@@ -10,8 +10,9 @@ https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
+PROJECT_NAME = '{{ project_name }}'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/{{ docs_version }}/howto/deployment/checklist/
@@ -22,7 +23,16 @@ SECRET_KEY = '{{ secret_key }}'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-TEMPLATE_DEBUG = True
+# A boolean that turns on/off template debug mode. If this is True, the fancy
+# error page will display a detailed report for any exception raised during
+# template rendering. This report contains the relevant snippet of the template,
+# with the appropriate line highlighted.
+#
+# Note that Django only displays fancy error pages if DEBUG is True, so you’ll
+# want to set that to take advantage of this setting.
+#
+# See https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#template-debug
+TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = []
 
@@ -78,5 +88,14 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/{{ docs_version }}/howto/static-files/
-
 STATIC_URL = '/static/'
+
+
+# Absolute filesystem path to the directory that will hold user-uploaded files.
+# Example: "/var/www/example.com/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# URL that handles the media served from MEDIA_ROOT. Make sure to use a
+# trailing slash.
+# Examples: "http://example.com/media/", "http://media.example.com/"
+MEDIA_URL = '/media/'
